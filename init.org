@@ -32,3 +32,63 @@ Multiple package managers exist. Here I go with [[https://github.com/jwiegley/us
 #+end_src
 
 [[https://github.com/radian-software/straight.el][Straight]] is another great package manager that one might want to look into.
+
+* Appearance
+** UI
+
+Remove some unneeded UI elements. Tangle this to =./early-init.el= for better optimization.
+
+#+begin_src emacs-lisp :tangle ./early-init.el
+(push '(menu-bar-lines . 0) default-frame-alist)
+(push '(tool-bar-lines . 0) default-frame-alist)
+(push '(vertical-scroll-bars) default-frame-alist)
+#+end_src
+
+Then set this in =./init.el= for consistency.
+
+#+begin_src emacs-lisp
+(setq menu-bar-mode nil
+      tool-bar-mode nil
+      scroll-bar-mode nil)
+#+end_src
+
+** Theme
+
+[[https://github.com/doomemacs/themes][doom-themes]] is the collection of themes from [[https://github.com/doomemacs/doomemacs][Doom Emacs]]. It integrates well with multiple packages.
+
+#+begin_src emacs-lisp
+(use-package doom-themes
+  :config
+   ;; Global settings (defaults)
+  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+        doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  (load-theme 'doom-snazzy t)
+  ;; Corrects (and improves) org-mode's native fontification.
+  (doom-themes-org-config)
+  )
+#+end_src
+
+** Font
+
+Setting the font. Those need to be installed on your system.
+
+On NixOS, those can be installed with:
+
+#+begin_src sh :tangle no
+$ nix profile install nixpkgs#source-code-pro
+$ nix profile install nixpkgs#roboto-mono
+$ nix profile install nixpkgs#ubuntu_font_family
+#+end_src
+
+#+begin_src emacs-lisp
+(set-face-attribute 'default nil
+                    :font "Source Code Pro" :height 130 :weight 'medium)
+
+(set-face-attribute 'italic nil
+                    :family "Victor Mono" :weight 'regular :slant 'italic)
+
+(set-face-attribute 'variable-pitch nil
+                    :font "Ubuntu Nerd Font" :height 150 :weight 'light)
+
+(set-face-attribute 'fixed-pitch nil :inherit 'default)
+#+end_src
