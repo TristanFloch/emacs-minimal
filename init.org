@@ -133,4 +133,21 @@ Here are simple enhancements.
 
 ;; Ensure file ends with a newline
 (setq require-final-newline t)
+
+;; Highlight trailing whitespaces
+(global-whitespace-mode 1)
+(setq-default whitespace-style '(face tab-mark lines-tail trailing))
 #+end_src
+
+* Personal information
+
+Those variables can be used by various packages for various options.
+For instance, =org-export-dispatch= sets the name of output files with theme.
+
+#+begin_src emacs-lisp
+(setq user-full-name "Tristan Floch"
+      user-mailaddress "tristan.floch@epita.fr")
+#+end_src
+
+If your name is not Tristan Floch, you might want to change this.
+
