@@ -229,3 +229,51 @@ Finally, [[https://github.com/minad/marginalia][Marginalia]] can be used to anno
   :init
   (marginalia-mode))
   #+end_src
+
+** LSP
+
+LSP (Language Server Protocol) is a tool that analyses code on the fly.
+It is implemented in multiple editors, namely Emacs (with [[https://emacs-lsp.github.io/lsp-mode/][lsp-mode]]).
+
+LSP provides multiple features, such as:
+- Code completion
+- Definition/implementation finding
+- Symbol renaming
+- Syntax checking
+
+NOTE: LSP can make your editor slow. If so, feel free to disable this module. You can also look into the [[https://emacs-lsp.github.io/lsp-mode/page/performance/][performance section]] of Emacs LSP mode documentation.
+
+#+begin_src emacs-lisp
+(use-package lsp-mode
+  :init
+  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+  (setq lsp-keymap-prefix "C-c l"
+        lsp-idle-delay 0
+        lsp-enable-on-type-formatting nil
+        lsp-headerline-breadcrumb-segments '(project file symbols)
+        lsp-enable-suggest-server-download nil)
+  :custom (lsp-completion-provider :none) ;; use corfu instead
+  :init
+  :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+         (cc-mode . lsp-deferred)
+         (c-mode . lsp-deferred)
+         (lsp-mode . lsp-enable-which-key-integration)) ;; see the following section
+  :commands (lsp lsp-deferred)) ;; starts lsp when one of these command is called
+#+end_src
+
+In order for LSP to work, some language dependant back-end need to be installed on the system.
+For instance, c-mode can use [[https://clangd.llvm.org/][clangd]] as a back-end. On NixOS, it can be installed with:
+
+#+begin_src sh :tangle no
+$ nix profile install clang-tools
+#+end_src
+
+* Key bindings
+
+[[https://github.com/justbur/emacs-which-key][Which Key]] is a plugin that pops up a window showing available key chords for each shortcut. It helps a lot with shortcut and command discoverability.
+
+#+begin_src emacs-lisp
+(use-package which-key
+    :config
+    (which-key-mode))
+#+end_src
