@@ -76,7 +76,7 @@ On NixOS, those can be installed with:
 
 #+begin_src sh :tangle no
 $ nix profile install nixpkgs#source-code-pro
-$ nix profile install nixpkgs#roboto-mono
+$ nix profile install nixpkgs#victor-mono
 $ nix profile install nixpkgs#ubuntu_font_family
 #+end_src
 
