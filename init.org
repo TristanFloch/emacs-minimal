@@ -31,6 +31,9 @@ Multiple package managers exist. Here I go with [[https://github.com/jwiegley/us
 (setq use-package-always-ensure t) ; auto enable packages from config file
 #+end_src
 
+If some packages cannot be found, try running =package-refresh-contents= again.
+Also, it is recommended to run =package-update-all= from time to time. Especially strange warnings are encountered.
+
 [[https://github.com/radian-software/straight.el][Straight]] is another great package manager that one might want to look into.
 
 * Appearance
