@@ -145,6 +145,45 @@ For instance, =org-export-dispatch= sets the name of output files with theme.
 
 If your name is not Tristan Floch, you might want to change this.
 
+* Key bindings
+** Vim key bindings
+
+[[https://github.com/emacs-evil/evil][evil-mode]] is the Vim emulation for Emacs.
+
+#+begin_src emacs-lisp
+(use-package evil
+  :init
+  (setq evil-want-integration t
+        evil-want-keybinding nil
+        evil-vsplit-window-right t
+        evil-split-window-below t
+        evil-want-C-u-scroll t
+        evil-want-Y-yank-to-eol t
+        evil-undo-system 'undo-redo)
+  :config
+  (evil-mode 1)
+  )
+#+end_src
+
+[[https://github.com/emacs-evil/evil-collection][evil-collection]] helps =evil-mode= applying the emulation to every emacs mode.
+
+#+begin_src emacs-lisp
+(use-package evil-collection
+  :after evil
+  :config
+  (evil-collection-init))
+#+end_src
+
+** Which Key mode
+
+[[https://github.com/justbur/emacs-which-key][Which Key]] is a plugin that pops up a window showing available key chords for each shortcut. It helps a lot with shortcut and command discoverability.
+
+#+begin_src emacs-lisp
+(use-package which-key
+    :config
+    (which-key-mode))
+#+end_src
+
 * Completion
 ** Popup completion
 
@@ -256,45 +295,6 @@ For instance, c-mode can use [[https://clangd.llvm.org/][clangd]] as a back-end.
 
 #+begin_src sh :tangle no
 $ nix profile install clang-tools
-#+end_src
-
-* Key bindings
-** Vim key bindings
-
-[[https://github.com/emacs-evil/evil][evil-mode]] is the Vim emulation for Emacs.
-
-#+begin_src emacs-lisp
-(use-package evil
-  :init
-  (setq evil-want-integration t
-        evil-want-keybinding nil
-        evil-vsplit-window-right t
-        evil-split-window-below t
-        evil-want-C-u-scroll t
-        evil-want-Y-yank-to-eol t
-        evil-undo-system 'undo-redo)
-  :config
-  (evil-mode 1)
-  )
-#+end_src
-
-[[https://github.com/emacs-evil/evil-collection][evil-collection]] helps =evil-mode= applying the emulation to every emacs mode.
-
-#+begin_src emacs-lisp
-(use-package evil-collection
-  :after evil
-  :config
-  (evil-collection-init))
-#+end_src
-
-** Which Key mode
-
-[[https://github.com/justbur/emacs-which-key][Which Key]] is a plugin that pops up a window showing available key chords for each shortcut. It helps a lot with shortcut and command discoverability.
-
-#+begin_src emacs-lisp
-(use-package which-key
-    :config
-    (which-key-mode))
 #+end_src
 
 * Prog
