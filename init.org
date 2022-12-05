@@ -256,6 +256,35 @@ $ nix profile install clang-tools
 #+end_src
 
 * Key bindings
+** Vim key bindings
+
+[[https://github.com/emacs-evil/evil][evil-mode]] is the Vim emulation for Emacs.
+
+#+begin_src emacs-lisp
+(use-package evil
+  :init
+  (setq evil-want-integration t
+        evil-want-keybinding nil
+        evil-vsplit-window-right t
+        evil-split-window-below t
+        evil-want-C-u-scroll t
+        evil-want-Y-yank-to-eol t
+        evil-undo-system 'undo-redo)
+  :config
+  (evil-mode 1)
+  )
+#+end_src
+
+[[https://github.com/emacs-evil/evil-collection][evil-collection]] helps =evil-mode= applying the emulation to every emacs mode.
+
+#+begin_src emacs-lisp
+(use-package evil-collection
+  :after evil
+  :config
+  (evil-collection-init))
+#+end_src
+
+** Which Key mode
 
 [[https://github.com/justbur/emacs-which-key][Which Key]] is a plugin that pops up a window showing available key chords for each shortcut. It helps a lot with shortcut and command discoverability.
 
@@ -304,6 +333,7 @@ Parenthesis are well align and it sets =c-basic-offset= to 4.
 #+begin_src emacs-lisp
 (add-hook 'c-mode #'(c-set-style "stroustrup"))
 #+end_src
+
 * Magit
 
 [[https://magit.vc/][Magit]] has to be the best git front-end out there, and one of the best Emacs plugin.
