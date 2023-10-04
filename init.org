@@ -3,12 +3,7 @@
 #+PROPERTY: header-args :results silent :tangle "./init.el"
 #+STARTUP: overview
 
-This is a minimal Emacs configuration.
-Its goal is to provide a sane basis for anyone who might want to create their own configuration.
-
-This is greatly inspired by [[https://github.com/Yumasi/simple-emacs-config][Yumasi's configuration for EPITA students]].
-
-One can copy this org file and tangle it with =org-babel-tangle= or simply copy code blocks to their configuration.
+Snippets from this configuration can be either tangled using =org-babel-tangle= or copied individually.
 
 * Package management
 ** Package archives
