@@ -15,13 +15,11 @@ Snippets from this configuration can be either tangled using =org-babel-tangle= 
 
 ** Package manager
 
-Multiple package managers exist. Here I go with [[https://github.com/jwiegley/use-package][use-package]] as it is pretty straightforward.
+Multiple package managers exist for Emacs.
+As of Emacs 29, =use-package= has been built in so I'll use this one.
 
 #+begin_src emacs-lisp
 (package-initialize)
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
 (require 'use-package)
 (setq use-package-always-ensure t) ; auto enable packages from config file
 #+end_src
